@@ -22,6 +22,11 @@ public class Physics : MonoBehaviour
         {
             Vector3 acceleration = CalculateAcceleration(body.transform.position, body);
             body.UpdateVelocity(acceleration);
+            
+            if (body.enableRotation)
+            {
+                body.Rotate(Vector3.up, body.radius, body.rotationSpeed);
+            }
         }
     }
     
