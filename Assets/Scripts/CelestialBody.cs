@@ -6,9 +6,14 @@ public class CelestialBody : MonoBehaviour
 
     private Rigidbody _rigidbody;
 
-    public float radius;
-    public float surfaceGravity;
-    public Vector3 initialVelocity;
+    [Header("Gravitation")]
+    [SerializeField] public float radius;
+    [SerializeField] public float surfaceGravity;
+    [SerializeField] public Vector3 initialVelocity;
+    
+    [Header("Rotating")]
+    [SerializeField] public bool enableRotation;
+    [SerializeField] public float rotationSpeed;
 
     public float mass { get; private set; }
     
@@ -33,6 +38,13 @@ public class CelestialBody : MonoBehaviour
     public void UpdateVelocity(Vector3 acceleration) 
     {
         _rigidbody.AddForce(acceleration, ForceMode.Acceleration);
+    }
+    
+    public void Rotate(Vector3 direction, float radius, float speed)
+    {
+        float rotationSpeed = 2 * Mathf.PI * radius * speed * Constants.RotationalConstant;
+        Vector3 forceDirection = direction * rotationSpeed;
+        transform.Rotate(forceDirection);
     }
     
     #endregion
