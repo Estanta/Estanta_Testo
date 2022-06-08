@@ -24,6 +24,15 @@ public class CelestialBody : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody>();
         _rigidbody.mass = mass;
         _rigidbody.velocity = initialVelocity;
+
+        #region Init values
+
+        if (radius == default)
+        {
+            radius = Constants.DefaultRadius;
+        }
+
+        #endregion
     }
     
     #endregion
